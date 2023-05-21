@@ -1,6 +1,6 @@
 name: Test
 
-run-name: ${{ github.actor }} is running tests
+run-name: ${{ github.actor }} is running tests.
 
 on: [push]
 
@@ -24,6 +24,9 @@ jobs:
 
       - name: Setup Application
         run: cp .env.example .env && php artisan key:generate
+
+      - name: Install node dependencies
+        run: npm install && npm run build
 
       - name: Run tests
         run: php artisan test -p
