@@ -1,4 +1,4 @@
-name: Pest Tests
+name: Testing
 
 run-name: ${{ github.actor }} is running tests.
 
