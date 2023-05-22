@@ -1,5 +1,7 @@
 name: Duster Lint
 
+run-name: ${{ github.actor }} is checking linting.
+
 on: [push]
 
 jobs:
