@@ -8,7 +8,7 @@ use {{ namespacedRequests }}
 
 class {{ class }} extends Controller
 {
-    // Display a list of {{ model }}.
+    // Display a list of a resource.
     public function index()
     {
         //
