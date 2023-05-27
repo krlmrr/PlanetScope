@@ -47,6 +47,7 @@ return [
     */
 
     'username' => 'email',
+
     'email' => 'email',
 
     /*
@@ -74,6 +75,7 @@ return [
     */
 
     'prefix' => '',
+
     'domain' => null,
 
     /*
