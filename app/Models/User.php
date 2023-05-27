@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     // The attributes that aren't mass assignable.
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     // The attributes that should be hidden for serialization.

@@ -10,7 +10,7 @@ class TeamInvitation extends JetstreamTeamInvitation
 {
     // The attributes that aren't mass assignable.
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     // Get the team that the invitation belongs to.

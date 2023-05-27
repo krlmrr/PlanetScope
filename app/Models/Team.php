@@ -19,7 +19,7 @@ class Team extends JetstreamTeam
 
     // The attributes that aren't mass assignable.
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     // The event map for the model.
