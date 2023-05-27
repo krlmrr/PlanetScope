@@ -28,7 +28,7 @@ jobs:
       - name: Setup Application
         run: cp .env.example .env && php artisan key:generate
 
-      - name: Install node dependencies
+      - name: Install Node Dependencies
         run: npm install && npm run build
 
       - name: Upgrade Chrome Driver
