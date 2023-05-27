@@ -18,9 +18,7 @@ use Laravel\Jetstream\Rules\Role;
 
 class InviteTeamMember implements InvitesTeamMembers
 {
-    /**
-     * Invite a new team member to the given team.
-     */
+    // Invite a new team member to the given team.
     public function invite(User $user, Team $team, string $email, string $role = null): void
     {
         Gate::forUser($user)->authorize('addTeamMember', $team);
@@ -37,9 +35,7 @@ class InviteTeamMember implements InvitesTeamMembers
         Mail::to($email)->send(new TeamInvitation($invitation));
     }
 
-    /**
-     * Validate the invite member operation.
-     */
+    // Validate the invite member operation.
     protected function validate(Team $team, string $email, ?string $role): void
     {
         Validator::make([
@@ -52,11 +48,7 @@ class InviteTeamMember implements InvitesTeamMembers
         )->validateWithBag('addTeamMember');
     }
 
-    /**
-     * Get the validation rules for inviting a team member.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
-     */
+    // Get the validation rules for inviting a team member.
     protected function rules(Team $team): array
     {
         return array_filter([
@@ -72,9 +64,7 @@ class InviteTeamMember implements InvitesTeamMembers
         ]);
     }
 
-    /**
-     * Ensure that the user is not already on the team.
-     */
+    // Ensure that the user is not already on the team.
     protected function ensureUserIsNotAlreadyOnTeam(Team $team, string $email): Closure
     {
         return function ($validator) use ($team, $email) {

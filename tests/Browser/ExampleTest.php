@@ -7,11 +7,7 @@ use Tests\DuskTestCase;
 
 class ExampleTest extends DuskTestCase
 {
-    /**
-     * A basic browser test example.
-     *
-     * @test
-     */
+    /** @test */
     public function basicExample(): void
     {
         $this->browse(function (Browser $browser) {

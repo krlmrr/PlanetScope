@@ -10,10 +10,8 @@ class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function profile_information_can_be_updated(): void
+    /** @test */
+    public function profileInformationCanBeUpdated(): void
     {
         $this->actingAs($user = User::factory()->create());
 

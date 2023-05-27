@@ -11,20 +11,16 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function login_screen_can_be_rendered(): void
+    /** @test */
+    public function loginScreenCanBeRendered(): void
     {
         $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
 
-    /**
-     * @test
-     */
-    public function users_can_authenticate_using_the_login_screen(): void
+    /** @test */
+    public function userCanBeAuthenticatedUsingTheLoginScreen(): void
     {
         $user = User::factory()->create();
 
@@ -37,10 +33,8 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
-    /**
-     * @test
-     */
-    public function users_can_not_authenticate_with_invalid_password(): void
+    /** @test */
+    public function usersCanNotAuthenticateWithInvalidPassword(): void
     {
         $user = User::factory()->create();
 

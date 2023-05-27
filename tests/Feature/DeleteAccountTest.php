@@ -11,9 +11,7 @@ class DeleteAccountTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
+    /** @test */
     public function user_accounts_can_be_deleted(): void
     {
         if (! Features::hasAccountDeletionFeatures()) {

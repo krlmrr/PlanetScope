@@ -11,10 +11,8 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function two_factor_authentication_can_be_enabled(): void
+    /** @test */
+    public function twoFactorAuthenticationCanBeEnabled(): void
     {
         if (! Features::canManageTwoFactorAuthentication()) {
             $this->markTestSkipped('Two factor authentication is not enabled.');
@@ -32,10 +30,8 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
         $this->assertCount(8, $user->fresh()->recoveryCodes());
     }
 
-    /**
-     * @test
-     */
-    public function recovery_codes_can_be_regenerated(): void
+    /** @test */
+    public function recoveryCodesCanBeRegenerated(): void
     {
         if (! Features::canManageTwoFactorAuthentication()) {
             $this->markTestSkipped('Two factor authentication is not enabled.');
@@ -58,10 +54,8 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
         $this->assertCount(8, array_diff($user->recoveryCodes(), $user->fresh()->recoveryCodes()));
     }
 
-    /**
-     * @test
-     */
-    public function two_factor_authentication_can_be_disabled(): void
+    /** @test */
+    public function twoFactorAuthenticationCanBeDisabled(): void
     {
         if (! Features::canManageTwoFactorAuthentication()) {
             $this->markTestSkipped('Two factor authentication is not enabled.');
