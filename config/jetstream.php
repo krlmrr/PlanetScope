@@ -30,7 +30,6 @@ return [
      */
 
     'middleware' => ['web'],
-
     'auth_session' => AuthenticateSession::class,
 
     /*
@@ -77,5 +76,4 @@ return [
     */
 
     'profile_photo_disk' => 'public',
-
 ];
