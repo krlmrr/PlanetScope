@@ -35,4 +35,4 @@ jobs:
         run: php artisan dusk:install
 
       - name: Run tests
-        run: php artisan dusk
+        run: php artisan dusk --without-tty
