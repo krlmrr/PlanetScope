@@ -1,0 +1,52 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ namespacedRequests }}
+
+class {{ class }} extends Controller
+{
+    // Display a list of {{ model }}.
+    public function index()
+    {
+        //
+    }
+
+    // Show the form for creating a {{ model }}.
+    public function create()
+    {
+        //
+    }
+
+    // Store a newly created {{ model }} in storage.
+    public function store({{ storeRequest }} $request)
+    {
+        //
+    }
+
+    // Display the specified {{ model }}.
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        //
+    }
+
+    // Show the form for editing the specified {{ model }}.
+    public function edit({{ model }} ${{ modelVariable }})
+    {
+        //
+    }
+
+    // Update the specified {{ model }} in storage.
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    {
+        //
+    }
+
+    // Remove the specified {{ model }} from storage.
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        //
+    }
+}
