@@ -10,10 +10,8 @@ class UpdateTeamNameTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function team_names_can_be_updated(): void
+    /** @test */
+    public function teamNamesCanBeUpdated(): void
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 

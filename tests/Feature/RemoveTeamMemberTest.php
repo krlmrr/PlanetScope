@@ -10,10 +10,8 @@ class RemoveTeamMemberTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function team_members_can_be_removed_from_teams(): void
+    /** @test */
+    public function teamMembersCanBeRemovedFromTeams(): void
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
@@ -26,10 +24,8 @@ class RemoveTeamMemberTest extends TestCase
         $this->assertCount(0, $user->currentTeam->fresh()->users);
     }
 
-    /**
-     * @test
-     */
-    public function only_team_owner_can_remove_team_members(): void
+    /** @test */
+    public function onlyTeamOwnerCanRemoveTeamMembers(): void
     {
         $user = User::factory()->withPersonalTeam()->create();
 
