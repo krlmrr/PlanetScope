@@ -1,4 +1,4 @@
-name: Linting
+name: Duster Linting
 
 run-name: ${{ github.actor }} is checking linting.
 

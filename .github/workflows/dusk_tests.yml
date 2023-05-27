@@ -1,0 +1,58 @@
+name: Dusk Tests
+
+run-name: ${{ github.actor }} is running Dusk tests.
+
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['8.1', '8.2']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Setup Application
+        run: cp .env.example .env && php artisan key:generate
+
+      - name: Install Node Dependencies
+        run: npm install && npm run build
+
+      - name: Upgrade Chrome Driver
+        run: php artisan dusk:chrome-driver
+
+      - name: Start Chrome Driver
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+
+      - name: Run Laravel Server
+        run: php artisan serve --no-reload &
+
+      - name: Run tests
+        run: php artisan dusk --without-tty
+
+      - name: Upload Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots
+
+      - name: Upload Console Logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: console
+          path: tests/Browser/consol

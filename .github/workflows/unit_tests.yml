@@ -1,6 +1,6 @@
-name: Testing
+name: PHPUnit Tests
 
-run-name: ${{ github.actor }} is running tests.
+run-name: ${{ github.actor }} is running PHPUnit tests.
 
 on: [push]
 
