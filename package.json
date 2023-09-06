@@ -21,6 +21,9 @@
     },
     "dependencies": {
         "@ably/laravel-echo": "^1.0.2",
-        "ably": "^1.2.40"
+        "@headlessui/vue": "^1.7.16",
+        "@heroicons/vue": "^2.0.18",
+        "ably": "^1.2.40",
+        "dayjs": "^1.11.9"
     }
 }

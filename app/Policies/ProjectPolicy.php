@@ -6,7 +6,7 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProjectsPolicy
+class ProjectPolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class ProjectsPolicy
 
     public function view(User $user, Project $project): bool
     {
-        return true;
+        return $user->currentTeam->id === $project->team_id;
     }
 
     public function create(User $user): bool

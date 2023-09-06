@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -11,47 +12,70 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        //        $this->authorize('viewAny', Project::class);
+        $this->authorize('viewAny', Project::class);
+
+        $teamProjects = Project::query()
+            ->where('team_id', auth()->user()->currentTeam->id)
+            ->with('createdBy')
+            ->orderBy('name')
+            ->get();
 
         return Inertia::render('Projects/Index', [
-
+            'teamProjects' => $teamProjects,
         ]);
     }
 
     public function create(): Response
     {
-        return Inertia::render('Projects/Create');
+        $this->authorize('create', Project::class);
+
+        return Inertia::render('Projects/Create', [
+            'currentTeam' => auth()->user()->currentTeam->id,
+        ]);
     }
 
-    public function store(ProjectRequest $request)
+    public function store(ProjectRequest $request): RedirectResponse
     {
         $this->authorize('create', Project::class);
 
-        return Project::create($request->validated());
+        Project::create($request->validated());
+
+        return redirect()->route('projects.index');
     }
 
-    public function show(Project $project)
+    public function show(Project $project): Response
     {
         $this->authorize('view', $project);
 
-        return $project;
+        return Inertia::render('Projects/Show', [
+            'project' => $project->load(['createdBy']),
+        ]);
     }
 
-    public function update(ProjectRequest $request, Project $project)
+    public function edit(Project $project): Response
+    {
+        $this->authorize('update', $project);
+
+        return Inertia::render('Projects/Edit', [
+            'project' => $project,
+        ]);
+    }
+
+    public function update(ProjectRequest $request, Project $project): RedirectResponse
     {
         $this->authorize('update', $project);
 
         $project->update($request->validated());
 
-        return $project;
+        return redirect()->route('projects.index');
     }
 
-    public function destroy(Project $project)
+    public function destroy(Project $project): RedirectResponse
     {
         $this->authorize('delete', $project);
 
         $project->delete();
 
-        return response()->json();
+        return redirect()->route('projects.index');
     }
 }
