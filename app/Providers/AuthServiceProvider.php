@@ -9,7 +9,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     // The model to policy mappings for the application.
     protected $policies = [
-        //
+        //        Project::class => ProjectPolicy::class,
     ];
 
     // Register any authentication / authorization services.
