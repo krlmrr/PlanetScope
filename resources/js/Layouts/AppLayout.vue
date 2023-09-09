@@ -7,6 +7,7 @@
     import DropdownLink from '@/Components/Navigation/DropdownLink.vue'
     import NavLink from '@/Components/Navigation/NavLink.vue'
     import ResponsiveNavLink from '@/Components/Navigation/ResponsiveNavLink.vue'
+    import Footer from '@/Components/Page/Footer.vue'
 
     defineProps({
         title: String,
@@ -58,7 +59,7 @@
                             >
                                 <NavLink
                                     :href="route('projects.index')"
-                                    :active="route().current('projects.index')"
+                                    :active="route().current('projects')"
                                 >
                                     Projects
                                 </NavLink>
@@ -532,6 +533,8 @@
             <main class="py-12">
                 <slot />
             </main>
+
+            <Footer />
         </div>
     </div>
 </template>
