@@ -32,64 +32,50 @@
         </template>
 
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-                <InputError class="mt-2" :message="form.errors.name" />
-            </div>
+            <TextInput
+                id="name"
+                label="Name"
+                :errors="form.errors.name"
+                v-model="form.name"
+                type="text"
+                class="mt-2 block"
+                required
+                autofocus
+                autocomplete="name"
+            />
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+            <TextInput
+                id="email"
+                label="Email"
+                :errors="form.errors.email"
+                v-model="form.email"
+                type="email"
+                class="mt-2 block"
+                required
+                autocomplete="username"
+            />
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
+            <TextInput
+                id="password"
+                label="Password"
+                :errors="form.errors.password"
+                v-model="form.password"
+                type="password"
+                class="mt-2 block"
+                required
+                autocomplete="new-password"
+            />
 
-            <div class="mt-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError
-                    class="mt-2"
-                    :message="form.errors.password_confirmation"
-                />
-            </div>
+            <TextInput
+                id="password_confirmation"
+                label="Confirm Password"
+                :errors="form.errors.password_confirmation"
+                v-model="form.password_confirmation"
+                type="password"
+                class="mt-2 block"
+                required
+                autocomplete="new-password"
+            />
 
             <div
                 v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature"

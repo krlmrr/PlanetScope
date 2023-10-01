@@ -30,7 +30,7 @@
             <div class="col-span-6">
                 <InputLabel value="Team Owner" />
 
-                <div class="flex items-center mt-2">
+                <div class="flex items-center mt-4">
                     <img
                         class="object-cover w-12 h-12 rounded-full"
                         :src="$page.props.auth.user.profile_photo_url"
@@ -49,15 +49,15 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Team Name" />
                 <TextInput
                     id="name"
+                    label="Team Name"
+                    :errors="form.errors.name"
                     v-model="form.name"
                     type="text"
                     class="block w-full mt-1"
                     autofocus
                 />
-                <InputError :message="form.errors.name" class="mt-2" />
             </div>
         </template>
 

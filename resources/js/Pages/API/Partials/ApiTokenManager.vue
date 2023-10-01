@@ -8,7 +8,6 @@
     import DangerButton from '@/Components/Buttons/DangerButton.vue'
     import DialogModal from '@/Components/Jetstream/DialogModal.vue'
     import FormSection from '@/Components/Jetstream/FormSection.vue'
-    import InputError from '@/Components/Inputs/InputError.vue'
     import InputLabel from '@/Components/Inputs/InputLabel.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import SecondaryButton from '@/Components/Buttons/SecondaryButton.vue'
@@ -58,7 +57,7 @@
                 preserveScroll: true,
                 preserveState: true,
                 onSuccess: () => (managingPermissionsFor.value = null),
-            }
+            },
         )
     }
 
@@ -73,7 +72,7 @@
                 preserveScroll: true,
                 preserveState: true,
                 onSuccess: () => (apiTokenBeingDeleted.value = null),
-            }
+            },
         )
     }
 </script>
@@ -92,17 +91,14 @@
             <template #form>
                 <!-- Token Name -->
                 <div class="col-span-6 sm:col-span-4">
-                    <InputLabel for="name" value="Name" />
                     <TextInput
                         id="name"
+                        label="Name"
+                        :errors="createApiTokenForm.errors.name"
                         v-model="createApiTokenForm.name"
                         type="text"
                         class="mt-1 block w-full"
                         autofocus
-                    />
-                    <InputError
-                        :message="createApiTokenForm.errors.name"
-                        class="mt-2"
                     />
                 </div>
 
@@ -124,8 +120,9 @@
                                 />
                                 <span
                                     class="ml-2 text-sm text-gray-600 dark:text-gray-400"
-                                    >{{ permission }}</span
                                 >
+                                    {{ permission }}
+                                </span>
                             </label>
                         </div>
                     </div>

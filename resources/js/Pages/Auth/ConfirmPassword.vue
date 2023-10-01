@@ -3,8 +3,6 @@
     import { Head, useForm } from '@inertiajs/vue3'
     import AuthenticationCard from '@/Components/Jetstream/AuthenticationCard.vue'
     import AuthenticationCardLogo from '@/Components/Jetstream/AuthenticationCardLogo.vue'
-    import InputError from '@/Components/Inputs/InputError.vue'
-    import InputLabel from '@/Components/Inputs/InputLabel.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import TextInput from '@/Components/Inputs/TextInput.vue'
 
@@ -39,20 +37,18 @@
         </div>
 
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    ref="passwordInput"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="current-password"
-                    autofocus
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
+            <TextInput
+                label="Password"
+                id="password"
+                ref="passwordInput"
+                :errors="form.errors.password"
+                v-model="form.password"
+                type="password"
+                class="mt-1 block w-full"
+                required
+                autocomplete="current-password"
+                autofocus
+            />
 
             <div class="flex justify-end mt-4">
                 <PrimaryButton

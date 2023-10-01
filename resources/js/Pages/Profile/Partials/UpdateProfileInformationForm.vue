@@ -140,30 +140,30 @@
 
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Name" />
                 <TextInput
                     id="name"
+                    label="Name"
+                    :errors="form.errors.name"
                     v-model="form.name"
                     type="text"
                     class="mt-1 block w-full"
                     required
                     autocomplete="name"
                 />
-                <InputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
+                    label="Email"
+                    :errors="form.errors.email"
                     v-model="form.email"
                     type="email"
                     class="mt-1 block w-full"
                     required
                     autocomplete="username"
                 />
-                <InputError :message="form.errors.email" class="mt-2" />
 
                 <div
                     v-if="

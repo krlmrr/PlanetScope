@@ -2,7 +2,6 @@
     import { useForm } from '@inertiajs/vue3'
     import ActionMessage from '@/Components/Jetstream/ActionMessage.vue'
     import FormSection from '@/Components/Jetstream/FormSection.vue'
-    import InputError from '@/Components/Inputs/InputError.vue'
     import InputLabel from '@/Components/Inputs/InputLabel.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import TextInput from '@/Components/Inputs/TextInput.vue'
@@ -35,7 +34,7 @@
         <template #form>
             <!-- Team Owner Information -->
             <div class="col-span-6">
-                <InputLabel value="Team Owner" />
+                <InputLabel class="mx-2" value="Team Owner" />
 
                 <div class="flex items-center mt-2">
                     <img
@@ -57,17 +56,15 @@
 
             <!-- Team Name -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Team Name" />
-
                 <TextInput
                     id="name"
+                    label="Team Name"
+                    :errors="form.errors.name"
                     v-model="form.name"
                     type="text"
                     class="mt-1 block w-full"
                     :disabled="!permissions.canUpdateTeam"
                 />
-
-                <InputError :message="form.errors.name" class="mt-2" />
             </div>
         </template>
 

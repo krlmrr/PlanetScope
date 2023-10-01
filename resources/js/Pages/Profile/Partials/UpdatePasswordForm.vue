@@ -3,8 +3,6 @@
     import { useForm } from '@inertiajs/vue3'
     import ActionMessage from '@/Components/Jetstream/ActionMessage.vue'
     import FormSection from '@/Components/Jetstream/FormSection.vue'
-    import InputError from '@/Components/Inputs/InputError.vue'
-    import InputLabel from '@/Components/Inputs/InputLabel.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import TextInput from '@/Components/Inputs/TextInput.vue'
 
@@ -47,49 +45,40 @@
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="current_password" value="Current Password" />
                 <TextInput
+                    label="Current Password"
                     id="current_password"
                     ref="currentPasswordInput"
+                    :errors="form.errors.current_password"
                     v-model="form.current_password"
                     type="password"
                     class="mt-1 block w-full"
                     autocomplete="current-password"
                 />
-                <InputError
-                    :message="form.errors.current_password"
-                    class="mt-2"
-                />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password" value="New Password" />
                 <TextInput
                     id="password"
+                    label="New Password"
+                    :errors="form.errors.password"
                     ref="passwordInput"
                     v-model="form.password"
                     type="password"
                     class="mt-1 block w-full"
                     autocomplete="new-password"
                 />
-                <InputError :message="form.errors.password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
                 <TextInput
+                    label="Confirm Password"
+                    :errors="form.errors.password_confirmation"
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
                     class="mt-1 block w-full"
                     autocomplete="new-password"
-                />
-                <InputError
-                    :message="form.errors.password_confirmation"
-                    class="mt-2"
                 />
             </div>
         </template>

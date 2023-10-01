@@ -3,8 +3,6 @@
     import AuthenticationCard from '@/Components/Jetstream/AuthenticationCard.vue'
     import AuthenticationCardLogo from '@/Components/Jetstream/AuthenticationCardLogo.vue'
     import Checkbox from '@/Components/Inputs/Checkbox.vue'
-    import InputError from '@/Components/Inputs/InputError.vue'
-    import InputLabel from '@/Components/Inputs/InputLabel.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import TextInput from '@/Components/Inputs/TextInput.vue'
 
@@ -45,39 +43,35 @@
         </div>
 
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+            <TextInput
+                id="email"
+                label="Email"
+                :errors="form.errors.email"
+                v-model="form.email"
+                type="email"
+                class="mt-4"
+                required
+                autofocus
+                autocomplete="username"
+            />
+
+            <TextInput
+                id="password"
+                label="Password"
+                :errors="form.errors.password"
+                v-model="form.password"
+                type="password"
+                class="mt-4"
+                required
+                autocomplete="current-password"
+            />
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="current-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400"
-                        >Remember me</span
-                    >
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                        Remember me
+                    </span>
                 </label>
             </div>
 

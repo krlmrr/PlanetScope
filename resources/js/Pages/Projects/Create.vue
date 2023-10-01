@@ -6,15 +6,7 @@
 </script>
 
 <template>
-    <AppLayout title="Projects">
-        <template #header>
-            <h2
-                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
-            >
-                Create a Project
-            </h2>
-        </template>
-
+    <AppLayout title="Create a Project">
         <ProjectForm />
     </AppLayout>
 </template>

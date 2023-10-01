@@ -4,8 +4,6 @@
     import ActionSection from '@/Components/Jetstream/ActionSection.vue'
     import ConfirmsPassword from '@/Components/Jetstream/ConfirmsPassword.vue'
     import DangerButton from '@/Components/Buttons/DangerButton.vue'
-    import InputError from '@/Components/Inputs/InputError.vue'
-    import InputLabel from '@/Components/Inputs/InputLabel.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import SecondaryButton from '@/Components/Buttons/SecondaryButton.vue'
     import TextInput from '@/Components/Inputs/TextInput.vue'
@@ -26,7 +24,7 @@
     })
 
     const twoFactorEnabled = computed(
-        () => !enabling.value && usePage().props.auth.user?.two_factor_enabled
+        () => !enabling.value && usePage().props.auth.user?.two_factor_enabled,
     )
 
     watch(twoFactorEnabled, () => {
@@ -54,7 +52,7 @@
                     enabling.value = false
                     confirming.value = props.requiresConfirmation
                 },
-            }
+            },
         )
     }
 
@@ -183,26 +181,20 @@
                         </p>
                     </div>
 
-                    <div v-if="confirming" class="mt-4">
-                        <InputLabel for="code" value="Code" />
-
-                        <TextInput
-                            id="code"
-                            v-model="confirmationForm.code"
-                            type="text"
-                            name="code"
-                            class="block mt-1 w-1/2"
-                            inputmode="numeric"
-                            autofocus
-                            autocomplete="one-time-code"
-                            @keyup.enter="confirmTwoFactorAuthentication"
-                        />
-
-                        <InputError
-                            :message="confirmationForm.errors.code"
-                            class="mt-2"
-                        />
-                    </div>
+                    <TextInput
+                        v-if="confirming"
+                        id="code"
+                        label="Code"
+                        :errors="confirmationForm.errors.code"
+                        v-model="confirmationForm.code"
+                        type="text"
+                        name="code"
+                        class="block mt-4 w-1/2"
+                        inputmode="numeric"
+                        autofocus
+                        autocomplete="one-time-code"
+                        @keyup.enter="confirmTwoFactorAuthentication"
+                    />
                 </div>
 
                 <div v-if="recoveryCodes.length > 0 && !confirming">

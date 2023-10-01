@@ -20,15 +20,7 @@
 </script>
 
 <template>
-    <AppLayout title="Projects">
-        <template #header>
-            <h2
-                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
-            >
-                {{ project.name }}
-            </h2>
-        </template>
-
+    <AppLayout :title="project.name">
         <Card
             class="mx-6"
             header="Project Details"
@@ -83,6 +75,15 @@
             header="Scopes"
             header-description="A list of all of the scope of works for this project."
         >
+            <template #actions>
+                <Link
+                    :href="
+                        route('projects.scopes.create', { project: project })
+                    "
+                >
+                    <PrimaryButton> Create a Scope </PrimaryButton>
+                </Link>
+            </template>
             <template #body>
                 <p>Hello World!</p>
                 <p>There is nothing here... yet...</p>

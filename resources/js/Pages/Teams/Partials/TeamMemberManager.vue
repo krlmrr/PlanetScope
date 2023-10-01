@@ -63,7 +63,7 @@
             {
                 preserveScroll: true,
                 onSuccess: () => (currentlyManagingRole.value = false),
-            }
+            },
         )
     }
 
@@ -76,7 +76,7 @@
             route('team-members.destroy', [
                 props.team,
                 usePage().props.auth.user,
-            ])
+            ]),
         )
     }
 
@@ -95,7 +95,7 @@
                 preserveScroll: true,
                 preserveState: true,
                 onSuccess: () => (teamMemberBeingRemoved.value = null),
-            }
+            },
         )
     }
 
@@ -130,16 +130,13 @@
 
                     <!-- Member Email -->
                     <div class="col-span-6 sm:col-span-4">
-                        <InputLabel for="email" value="Email" />
                         <TextInput
                             id="email"
+                            label="Email"
+                            :errors="addTeamMemberForm.errors.email"
                             v-model="addTeamMemberForm.email"
                             type="email"
-                            class="mt-1 block w-full"
-                        />
-                        <InputError
-                            :message="addTeamMemberForm.errors.email"
-                            class="mt-2"
+                            class="mt-1"
                         />
                     </div>
 
@@ -148,7 +145,11 @@
                         v-if="availableRoles.length > 0"
                         class="col-span-6 lg:col-span-4"
                     >
-                        <InputLabel for="roles" value="Role" />
+                        <InputLabel
+                            class="mx-2 mb-2"
+                            for="roles"
+                            value="Role :"
+                        />
                         <InputError
                             :message="addTeamMemberForm.errors.role"
                             class="mt-2"
