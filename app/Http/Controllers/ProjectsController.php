@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\Scope;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -49,6 +50,7 @@ class ProjectsController extends Controller
 
         return Inertia::render('Projects/Show', [
             'project' => $project->load(['createdBy']),
+            'scopes' => Scope::where('project_id', $project->id)->with('status')->get()
         ]);
     }
 

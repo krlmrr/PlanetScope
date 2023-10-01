@@ -1,22 +1,21 @@
 <script setup>
     import { Link } from '@inertiajs/vue3'
+    import { ref } from 'vue'
+    import dayjs from 'dayjs'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import Card from '@/Components/Containers/Card.vue'
-    import dayjs from 'dayjs'
+    import Table from '@/Components/Containers/Table.vue'
     import DangerButton from '@/Components/Buttons/DangerButton.vue'
     import Modal from '@/Components/Containers/Modal.vue'
     import SecondaryButton from '@/Components/Buttons/SecondaryButton.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
-    import { ref } from 'vue'
+    import TableColumn from '@/Components/Containers/TableColumn.vue'
 
-    defineProps(['project'])
+    defineProps(['project', 'scopes'])
+
+    const headers = ['Title', 'Status', 'Budget', 'Created At', '']
 
     const open = ref(false)
-
-    function submit() {
-        console.log('This works')
-        open.value = false
-    }
 </script>
 
 <template>
@@ -35,10 +34,6 @@
                 <div class="flex flex-wrap justify-between space-x-8">
                     <div class="space-y-4">
                         <p>
-                            <span class="font-semibold">Created By : </span>
-                            {{ project.created_by.name }}
-                        </p>
-                        <p>
                             <span class="font-semibold">URL : </span>
                             {{ project.url }}
                         </p>
@@ -50,18 +45,22 @@
 
                     <div class="space-y-4">
                         <p>
+                            <span class="font-semibold">Created By : </span>
+                            {{ project.created_by.name }}
+                        </p>
+                        <p>
                             <span class="font-semibold">Created At : </span>
                             {{
                                 dayjs(project.created_at).format(
-                                    'MM/DD/YYYY - hh:mm A'
+                                    'MM/DD/YYYY - hh:mm A',
                                 )
                             }}
                         </p>
                         <p>
-                            Updated At:
+                            <span class="font-semibold">Updated At : </span>
                             {{
                                 dayjs(project.updated_at).format(
-                                    'MM/DD/YYYY - hh:mm A'
+                                    'MM/DD/YYYY - hh:mm A',
                                 )
                             }}
                         </p>
@@ -85,8 +84,38 @@
                 </Link>
             </template>
             <template #body>
-                <p>Hello World!</p>
-                <p>There is nothing here... yet...</p>
+                <p v-if="scopes.length === 0">
+                    No Scopes found, why don't you create one?
+                </p>
+                <Table
+                    v-else
+                    :headers="headers"
+                    :items="scopes"
+                    v-slot="scopes"
+                >
+                    <TableColumn>
+                        {{ scopes.item.title }}
+                    </TableColumn>
+                    <TableColumn class="mx-4">
+                        <p :class="scopes.item.status.color">
+                            {{ scopes.item.status.status }}
+                        </p>
+                    </TableColumn>
+                    <TableColumn>
+                        {{ scopes.item.budget }}
+                    </TableColumn>
+                    <TableColumn>
+                        {{
+                            dayjs(scopes.item.created_at).format(
+                                'MM/DD/YYYY - hh:mm A',
+                            )
+                        }}
+                    </TableColumn>
+                    <!--                    <TableColumn class="flex space-x-4 justify-center">-->
+                    <!--                        <SecondaryButton>Edit</SecondaryButton>-->
+                    <!--                        <DangerButton>Delete</DangerButton>-->
+                    <!--                    </TableColumn>-->
+                </Table>
             </template>
         </Card>
 

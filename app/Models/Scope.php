@@ -11,4 +11,9 @@ class Scope extends Model
     use SoftDeletes, HasFactory;
 
     protected $guarded = [];
+
+    public function status()
+    {
+        return $this->hasOne(ScopeStatus::class, 'id', 'scope_status_id');
+    }
 }

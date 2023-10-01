@@ -17,11 +17,13 @@ class ScopeController extends Controller
         ]);
     }
 
-    public function store(ScopeRequest $request)
+    public function store(Project $project, ScopeRequest $request)
     {
         $this->authorize('create', Scope::class);
 
-        return Scope::create($request->validated());
+        Scope::create($request->validated());
+
+        return redirect(route('projects.show', ['project' => $project ]));
     }
 
     public function show(Scope $scope)

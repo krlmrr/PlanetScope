@@ -23,7 +23,7 @@
             },
             {
                 preserveState: false,
-            }
+            },
         )
     }
 
@@ -59,10 +59,16 @@
                             >
                                 <NavLink
                                     :href="route('projects.index')"
-                                    :active="route().current('projects')"
+                                    :active="route().current('projects.*')"
                                 >
                                     Projects
                                 </NavLink>
+                                <!--                                <NavLink-->
+                                <!--                                    :href="route('projects.index')"-->
+                                <!--                                    :active="route().current('scopes.*')"-->
+                                <!--                                >-->
+                                <!--                                    Scopes-->
+                                <!--                                </NavLink>-->
                             </div>
                         </div>
 
@@ -125,7 +131,7 @@
                                                             'teams.show',
                                                             $page.props.auth
                                                                 .user
-                                                                .current_team
+                                                                .current_team,
                                                         )
                                                     "
                                                 >
@@ -171,7 +177,7 @@
                                                         <form
                                                             @submit.prevent="
                                                                 switchToTeam(
-                                                                    team
+                                                                    team,
                                                                 )
                                                             "
                                                         >
@@ -444,7 +450,7 @@
                                     :href="
                                         route(
                                             'teams.show',
-                                            $page.props.auth.user.current_team
+                                            $page.props.auth.user.current_team,
                                         )
                                     "
                                     :active="route().current('teams.show')"

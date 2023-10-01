@@ -7,6 +7,6 @@
 
 <template>
     <AppLayout :title="`Create a Scope for ${project.name}`">
-        <ScopeForm />
+        <ScopeForm :project="project" />
     </AppLayout>
 </template>
