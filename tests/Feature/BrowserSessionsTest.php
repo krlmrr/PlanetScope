@@ -1,26 +1,13 @@
 <?php
 
-namespace Tests\Feature;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\delete;
 
-class BrowserSessionsTest extends TestCase
-{
-    use RefreshDatabase;
+test('other browser sessions can be logged out', function () {
+    actingAs($user = User::factory()->create());
 
-    /**
-     * @test
-     */
-    public function other_browser_sessions_can_be_logged_out(): void
-    {
-        $this->actingAs($user = User::factory()->create());
-
-        $response = $this->delete('/user/other-browser-sessions', [
-            'password' => 'password',
-        ]);
-
-        $response->assertSessionHasNoErrors();
-    }
-}
+    delete('/user/other-browser-sessions', [
+        'password' => 'password',
+    ])->assertSessionHasNoErrors();
+});

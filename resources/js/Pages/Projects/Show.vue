@@ -10,16 +10,23 @@
     import SecondaryButton from '@/Components/Buttons/SecondaryButton.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
     import TableColumn from '@/Components/Containers/TableColumn.vue'
+    import TabGroup from '@/Components/Navigation/TabGroup.vue'
 
     defineProps(['project', 'scopes'])
 
     const headers = ['Title', 'Status', 'Budget', 'Created At', '']
+
+    const tabs = [
+        { name: 'Project Details', href: '#', current: false },
+        { name: 'Scopes', href: '#', current: false },
+    ]
 
     const open = ref(false)
 </script>
 
 <template>
     <AppLayout :title="project.name">
+        <TabGroup :tabs="tabs" />
         <Card
             class="mx-6"
             header="Project Details"

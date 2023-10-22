@@ -15,9 +15,6 @@ use Laravel\Jetstream\Rules\Role;
 
 class AddTeamMember implements AddsTeamMembers
 {
-    /**
-     * Add a new team member to the given team.
-     */
     public function add(User $user, Team $team, string $email, string $role = null): void
     {
         Gate::forUser($user)->authorize('addTeamMember', $team);
@@ -35,9 +32,6 @@ class AddTeamMember implements AddsTeamMembers
         TeamMemberAdded::dispatch($team, $newTeamMember);
     }
 
-    /**
-     * Validate the add member operation.
-     */
     protected function validate(Team $team, string $email, ?string $role): void
     {
         Validator::make([
@@ -50,11 +44,6 @@ class AddTeamMember implements AddsTeamMembers
         )->validateWithBag('addTeamMember');
     }
 
-    /**
-     * Get the validation rules for adding a team member.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
-     */
     protected function rules(): array
     {
         return array_filter([
@@ -65,9 +54,6 @@ class AddTeamMember implements AddsTeamMembers
         ]);
     }
 
-    /**
-     * Ensure that the user is not already on the team.
-     */
     protected function ensureUserIsNotAlreadyOnTeam(Team $team, string $email): Closure
     {
         return function ($validator) use ($team, $email) {
