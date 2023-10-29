@@ -32,6 +32,8 @@ class ProjectFactory extends Factory
             'created_by' => $user->id,
             'name' => Str::title($this->faker->words(3, true)),
             'repo' => 'https://github.com/' . $this->faker->word() . '/' . $this->faker->word(),
+            'url' => $this->faker->url(),
+            'test_url' => $this->faker->url(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
