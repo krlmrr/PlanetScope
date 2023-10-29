@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
+        User::firstOrCreate([
             'name' => 'Karl Murray',
             'email' => 'karl@planetscope.io',
             'password' => bcrypt('password'),
