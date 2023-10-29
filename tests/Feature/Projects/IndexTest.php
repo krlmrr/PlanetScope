@@ -10,6 +10,6 @@ it('loads a project index for the owner', function () {
 });
 
 it('allows a team member to see the projects', function () {
-    actingAs(teamMember())
+    actingAs(teamMember(team()))
         ->get(route('projects.index'))->assertStatus(200);
 });
