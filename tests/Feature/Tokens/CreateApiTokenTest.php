@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Laravel\Jetstream\Features;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
 
@@ -18,9 +19,9 @@ it('api tokens can be created', function () {
 
     expect($user->fresh()->tokens)->toHaveCount(1)
         ->and($user->fresh()->tokens->first()->name)
-            ->toEqual('Test Token')
+        ->toEqual('Test Token')
         ->and($user->fresh()->tokens->first()->can('read'))
-            ->toBeTrue()
+        ->toBeTrue()
         ->and($user->fresh()->tokens->first()->can('delete'))
-            ->toBeFalse();
+        ->toBeFalse();
 })->skip(fn () => ! Features::hasApiFeatures(), 'API support is not enabled.');

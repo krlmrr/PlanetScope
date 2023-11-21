@@ -13,3 +13,8 @@ it('allows a team member to see the projects', function () {
     actingAs(teamMember(team()))
         ->get(route('projects.index'))->assertStatus(200);
 });
+
+it('does not allow a non-team member to view the project', function () {
+    actingAs(user())
+        ->get(route('projects.index'))->assertStatus(403);
+});

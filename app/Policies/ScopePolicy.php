@@ -17,7 +17,7 @@ class ScopePolicy
 
     public function view(User $user, Scope $scope): bool
     {
-        return true;
+        return $user->currentTeam->id === $scope->team_id;
     }
 
     public function create(User $user): bool

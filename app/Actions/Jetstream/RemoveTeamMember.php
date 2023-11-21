@@ -12,9 +12,6 @@ use Laravel\Jetstream\Events\TeamMemberRemoved;
 
 class RemoveTeamMember implements RemovesTeamMembers
 {
-    /**
-     * Remove the team member from the given team.
-     */
     public function remove(User $user, Team $team, User $teamMember): void
     {
         $this->authorize($user, $team, $teamMember);
@@ -26,9 +23,6 @@ class RemoveTeamMember implements RemovesTeamMembers
         TeamMemberRemoved::dispatch($team, $teamMember);
     }
 
-    /**
-     * Authorize that the user can remove the team member.
-     */
     protected function authorize(User $user, Team $team, User $teamMember): void
     {
         if (! Gate::forUser($user)->check('removeTeamMember', $team) &&
@@ -37,9 +31,6 @@ class RemoveTeamMember implements RemovesTeamMembers
         }
     }
 
-    /**
-     * Ensure that the currently authenticated user does not own the team.
-     */
     protected function ensureUserDoesNotOwnTeam(User $teamMember, Team $team): void
     {
         if ($teamMember->id === $team->owner->id) {

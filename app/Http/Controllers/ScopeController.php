@@ -10,8 +10,20 @@ use Inertia\Response;
 
 class ScopeController extends Controller
 {
+    public function index(Project $project)
+    {
+        $this->authorize('viewAny', [Scope::class, $project]);
+
+        return Inertia::render('Scope/Index', [
+            'project' => $project,
+            'scopes' => Scope::where('project_id', $project->id)->with('status')->get(),
+        ]);
+    }
+
     public function create(Project $project): Response
     {
+        $this->authorize('create', Scope::class);
+
         return Inertia::render('Scope/Create', [
             'project' => $project,
         ]);
@@ -23,10 +35,10 @@ class ScopeController extends Controller
 
         Scope::create($request->validated());
 
-        return redirect(route('projects.show', ['project' => $project ]));
+        return redirect(route('projects.show', ['project' => $project]));
     }
 
-    public function show(Scope $scope)
+    public function show(Project $project, Scope $scope)
     {
         $this->authorize('view', $scope);
 

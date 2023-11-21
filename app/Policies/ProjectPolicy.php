@@ -10,9 +10,18 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user): bool|null
+    {
+        if ($user->ownsTeam($user->currentTeam)) {
+            return true;
+        }
+
+        return null;
+    }
+
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->belongsToTeam($user->currentTeam);
     }
 
     public function view(User $user, Project $project): bool

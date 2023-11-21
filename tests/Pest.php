@@ -3,6 +3,7 @@
 use App\Models\Project;
 use App\Models\Team;
 use App\Models\User;
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 use Tests\CreatesApplication;
@@ -10,25 +11,25 @@ use Tests\CreatesApplication;
 uses(
     TestCase::class,
     CreatesApplication::class,
-    RefreshDatabase::class
+    RefreshDatabase::class,
 )->in('Feature');
+
+function team($owner = null)
+{
+    return Team::factory()->create([
+        'user_id' => $owner ? $owner->id : 1,
+    ]);
+}
 
 function owner($team = null): User
 {
     $user = User::factory()->create([
-        'id' => 1
+        'id' => 1,
     ]);
 
     $user->switchTeam($team ?? team());
 
     return $user;
-}
-
-function team($owner = null)
-{
-    return Team::factory()->create([
-        'user_id' => $owner ?  $owner->id : 1
-    ]);
 }
 
 function teamMember($team): User
@@ -43,6 +44,13 @@ function teamMember($team): User
     $user->switchTeam($team);
 
     return $user;
+}
+
+function user(): User
+{
+    return User::factory()->create([
+        'current_team_id' => Team::factory()->create()
+    ]);
 }
 
 function project()

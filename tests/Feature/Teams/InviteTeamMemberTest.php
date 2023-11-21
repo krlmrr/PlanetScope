@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Mail\TeamInvitation;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\delete;
 use function Pest\Laravel\post;
@@ -21,7 +22,7 @@ test('team members can be invited to team', function () {
     Mail::assertSent(TeamInvitation::class);
 
     expect($user->currentTeam->fresh()->teamInvitations)->toHaveCount(1);
-})->skip( fn () => ! Features::sendsTeamInvitations(), 'Team invitations not enabled.');
+})->skip(fn () => ! Features::sendsTeamInvitations(), 'Team invitations not enabled.');
 
 it('team member invitations can be cancelled', function () {
     Mail::fake();

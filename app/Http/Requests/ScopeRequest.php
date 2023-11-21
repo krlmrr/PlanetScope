@@ -10,7 +10,7 @@ class ScopeRequest extends FormRequest
     {
         return $this->merge([
             'team_id' => auth()->user()->currentTeam->id,
-            'scope_status_id' => 1
+            'scope_status_id' => 1,
         ]);
     }
 
@@ -19,13 +19,13 @@ class ScopeRequest extends FormRequest
         return [
             'project_id' => ['required', 'integer'],
             'team_id' => ['required', 'integer'],
-            'scope_status_id' => ['required','integer'],
+            'scope_status_id' => ['required', 'integer'],
             'title' => ['required', 'string'],
             'overview' => ['nullable', 'string'],
             'business_case' => ['nullable', 'string'],
             'budget' => ['nullable', 'integer'],
             'start_date' => ['nullable', 'date'],
-            'end_date' => ['nullable', 'date']
+            'end_date' => ['nullable', 'date'],
         ];
     }
 

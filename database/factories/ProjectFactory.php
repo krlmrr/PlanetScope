@@ -17,13 +17,13 @@ class ProjectFactory extends Factory
     {
         $team = Team::inRandomOrder()->first();
 
-        if (!$team) {
+        if (! $team) {
             $team = Team::factory()->create();
         }
 
         $user = User::inRandomOrder()->first();
 
-        if (!$user) {
+        if (! $user) {
             $user = User::factory()->create();
         }
 

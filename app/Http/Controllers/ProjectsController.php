@@ -50,7 +50,7 @@ class ProjectsController extends Controller
 
         return Inertia::render('Projects/Show', [
             'project' => $project->load(['createdBy']),
-            'scopes' => Scope::where('project_id', $project->id)->with('status')->get()
+            'scopes' => Scope::where('project_id', $project->id)->with('status')->get(),
         ]);
     }
 

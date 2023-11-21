@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
 
@@ -16,5 +17,5 @@ it('teams can be created', function () {
     expect($user->fresh()->ownedTeams)
         ->toHaveCount(2)
         ->and($user->fresh()->ownedTeams()->latest('id')->first()->name)
-            ->toEqual('Test Team');
+        ->toEqual('Test Team');
 });

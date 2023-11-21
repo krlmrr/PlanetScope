@@ -4,22 +4,23 @@
     import dayjs from 'dayjs'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import Card from '@/Components/Containers/Card.vue'
-    import Table from '@/Components/Containers/Table.vue'
     import DangerButton from '@/Components/Buttons/DangerButton.vue'
     import Modal from '@/Components/Containers/Modal.vue'
     import SecondaryButton from '@/Components/Buttons/SecondaryButton.vue'
     import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue'
-    import TableColumn from '@/Components/Containers/TableColumn.vue'
     import TabGroup from '@/Components/Navigation/TabGroup.vue'
 
-    defineProps(['project', 'scopes'])
+    const props = defineProps(['project', 'scopes'])
 
-    const headers = ['Title', 'Status', 'Budget', 'Created At', '']
-
-    const tabs = [
-        { name: 'Project Details', href: '#', current: false },
-        { name: 'Scopes', href: '#', current: false },
-    ]
+    const tabs = [{
+        name: 'Project Details',
+        routeGroup: 'projects',
+        href: route('projects.show', [props.project.id]),
+    }, {
+        name: 'Scopes',
+        routeGroup: 'projects.scopes',
+        href: route('projects.scopes.index', [props.project.id]),
+    }]
 
     const open = ref(false)
 </script>
@@ -30,7 +31,7 @@
         <Card
             class="mx-6"
             header="Project Details"
-            headerDescription="This is a very long description for the object I am currently working with..."
+            headerDescription="Details for the project you are currently working with."
         >
             <template #actions>
                 <DangerButton @click="open = true">
@@ -73,56 +74,6 @@
                         </p>
                     </div>
                 </div>
-            </template>
-        </Card>
-
-        <Card
-            class="my-12"
-            header="Scopes"
-            header-description="A list of all of the scope of works for this project."
-        >
-            <template #actions>
-                <Link
-                    :href="
-                        route('projects.scopes.create', { project: project })
-                    "
-                >
-                    <PrimaryButton> Create a Scope </PrimaryButton>
-                </Link>
-            </template>
-            <template #body>
-                <p v-if="scopes.length === 0">
-                    No Scopes found, why don't you create one?
-                </p>
-                <Table
-                    v-else
-                    :headers="headers"
-                    :items="scopes"
-                    v-slot="scopes"
-                >
-                    <TableColumn>
-                        {{ scopes.item.title }}
-                    </TableColumn>
-                    <TableColumn class="mx-4">
-                        <p :class="scopes.item.status.color">
-                            {{ scopes.item.status.status }}
-                        </p>
-                    </TableColumn>
-                    <TableColumn>
-                        {{ scopes.item.budget }}
-                    </TableColumn>
-                    <TableColumn>
-                        {{
-                            dayjs(scopes.item.created_at).format(
-                                'MM/DD/YYYY - hh:mm A',
-                            )
-                        }}
-                    </TableColumn>
-                    <!--                    <TableColumn class="flex space-x-4 justify-center">-->
-                    <!--                        <SecondaryButton>Edit</SecondaryButton>-->
-                    <!--                        <DangerButton>Delete</DangerButton>-->
-                    <!--                    </TableColumn>-->
-                </Table>
             </template>
         </Card>
 

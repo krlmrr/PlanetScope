@@ -10,8 +10,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ScopeStatusesSeeder::class,
-            UserSeeder::class,
-            TeamSeeder::class,
         ]);
     }
 }
