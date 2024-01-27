@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             ScopeStatusesSeeder::class,
             UsersSeeder::class,
             TeamsSeeder::class,
+            ProjectsSeeder::class
         ]);
     }
 }
