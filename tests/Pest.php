@@ -3,7 +3,6 @@
 use App\Models\Project;
 use App\Models\Team;
 use App\Models\User;
-use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 use Tests\CreatesApplication;
@@ -17,14 +16,14 @@ uses(
 function team($owner = null)
 {
     return Team::factory()->create([
-        'user_id' => $owner ? $owner->id : 1,
+        'user_id' => $owner ? $owner->id : 100,
     ]);
 }
 
 function owner($team = null): User
 {
     $user = User::factory()->create([
-        'id' => 1,
+        'id' => 100,
     ]);
 
     $user->switchTeam($team ?? team());

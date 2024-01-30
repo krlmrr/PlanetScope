@@ -10,14 +10,14 @@ use Laravel\Jetstream\Features;
 
 class UserFactory extends Factory
 {
-    public function configure(): static
-    {
-        return $this->afterMaking(function (User $user) {
-            $user->currentTeam = $user->allTeams()->first()->id;
-        })->afterCreating(function (User $user) {
-            $user->currentTeam = $user->allTeams()->first()->id;
-        });
-    }
+    //    public function configure(): static
+    //    {
+    //        return $this->afterMaking(function (User $user) {
+    //            $user->currentTeam = $user->allTeams()->first()->id;
+    //        })->afterCreating(function (User $user) {
+    //            $user->currentTeam = $user->allTeams()->first()->id;
+    //        });
+    //    }
 
     public function definition(): array
     {
@@ -43,7 +43,7 @@ class UserFactory extends Factory
         });
     }
 
-    public function withPersonalTeam(callable $callback = null): static
+    public function withPersonalTeam(?callable $callback = null): static
     {
         if (! Features::hasTeamFeatures()) {
             return $this->state([]);

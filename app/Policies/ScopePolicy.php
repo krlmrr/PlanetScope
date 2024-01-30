@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Project;
 use App\Models\Scope;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -10,14 +11,15 @@ class ScopePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, Project $project): bool
     {
-        return true;
+        return in_array($project->id, $user->projects->pluck('id')->toArray());
     }
 
     public function view(User $user, Scope $scope): bool
     {
-        return $user->currentTeam->id === $scope->team_id;
+        $project_ids = $user->projects->pluck('id')->toArray();
+        return in_array($scope->project_id, $project_ids);
     }
 
     public function create(User $user): bool

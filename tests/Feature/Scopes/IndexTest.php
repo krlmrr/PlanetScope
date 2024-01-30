@@ -7,7 +7,7 @@ use Database\Seeders\DatabaseSeeder;
 
 use function Pest\Laravel\actingAs;
 
-beforeEach(function() {
+beforeEach(function () {
     $this->seed(DatabaseSeeder::class);
     $this->project = project();
     $this->owner = User::where('id', $this->project->created_by)->first();
@@ -19,7 +19,9 @@ beforeEach(function() {
 });
 
 it('allows the owner to see a list of scopes on a project', function () {
-    $scope = Scope::inRandomOrder()->first();
+    $scope = Scope::where('project_id', $this->project->id)
+        ->inRandomOrder()
+        ->first();
 
     actingAs($this->owner)->get(
         route('projects.scopes.index', $this->project->id)
@@ -29,7 +31,10 @@ it('allows the owner to see a list of scopes on a project', function () {
 it('allows a team member to view a scope of work', function () {
     $team = Team::where('id', $this->project->team_id)->first();
     $teamMember = teamMember($team);
-    $scope = Scope::inRandomOrder()->first();
+
+    $scope = Scope::where('project_id', $this->project->id)
+        ->inRandomOrder()
+        ->first();
 
     actingAs($teamMember)->get(
         route('projects.scopes.index', $this->project->id)
@@ -37,9 +42,6 @@ it('allows a team member to view a scope of work', function () {
 });
 
 it('does not allow non-team members to view the scopes', function () {
-    $user = user();
-    dd($user->currentTeam->id);
-
     actingAs(user())->get(
         route('projects.scopes.index', $this->project->id)
     )->assertStatus(403);
