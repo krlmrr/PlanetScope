@@ -1,6 +1,6 @@
 name: Pest Feature Tests
 
-run-name: ${{ github.actor }} is running PHPUnit tests.
+run-name: ${{ github.actor }} is running Pest Feature tests.
 
 on: [push]
 
