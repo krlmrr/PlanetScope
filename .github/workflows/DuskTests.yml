@@ -2,7 +2,6 @@ name: Dusk Tests
 
 run-name: ${{ github.actor }} is running Dusk tests.
 
-
 on: [push]
 
 jobs:
@@ -11,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['8.1', '8.2']
+        php: ['8.2', '8.3']
 
     steps:
       - uses: actions/checkout@v3
@@ -55,4 +54,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: console
-          path: tests/Browser/consol
+          path: tests/Browser/console

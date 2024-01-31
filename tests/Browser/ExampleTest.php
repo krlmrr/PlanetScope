@@ -1,7 +1,9 @@
 <?php
 
-uses(\Tests\DuskTestCase::class);
 use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+
+uses(DuskTestCase::class);
 
 it('basic example', function () {
     $this->browse(function (Browser $browser) {
