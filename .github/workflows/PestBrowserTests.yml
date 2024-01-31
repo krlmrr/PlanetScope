@@ -1,6 +1,6 @@
 name: Dusk Tests
 
-run-name: ${{ github.actor }} is running Dusk tests.
+run-name: ${{ github.actor }} is running Pest Browser tests.
 
 on: [push]
 
