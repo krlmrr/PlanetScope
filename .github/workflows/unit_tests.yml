@@ -1,4 +1,4 @@
-name: PHPUnit Tests
+name: Pest Feature Tests
 
 run-name: ${{ github.actor }} is running PHPUnit tests.
 
