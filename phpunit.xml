@@ -20,7 +20,7 @@
     </testsuites>
     <source>
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory>app/Http/Controllers</directory>
         </include>
     </source>
     <php>

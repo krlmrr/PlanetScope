@@ -1,0 +1,35 @@
+name: Pest Code Coverage Tests
+
+run-name: ${{ github.actor }} is running Pest Code Coverage tests.
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['8.3']
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run:
+          composer install --prefer-dist
+
+      - name: Setup Application
+        run: cp .env.example .env && php artisan key:generate
+
+      - name: Install node dependencies
+        run: npm install && npm run build
+
+      - name: Run tests
+        run: ./vendor/bin/pest --coverage --min=90.5
