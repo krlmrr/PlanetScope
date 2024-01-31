@@ -40,7 +40,7 @@ jobs:
         run: php artisan serve --no-reload &
 
       - name: Run tests
-        run: php artisan dusk --without-tty
+        run: ./vendor/bin/pest --group=Browser -p
 
       - name: Upload Screenshots
         if: failure()
