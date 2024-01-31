@@ -12,7 +12,7 @@ class ScopeController extends Controller
 {
     public function index(Project $project)
     {
-        $this->authorize('viewAny', Project::class);
+        $this->authorize('viewAny', [Scope::class, $project]);
 
         return Inertia::render('Scope/Index', [
             'project' => $project,
@@ -22,7 +22,7 @@ class ScopeController extends Controller
 
     public function create(Project $project): Response
     {
-        $this->authorize('create', Project::class);
+        $this->authorize('create', [Scope::class, $project]);
 
         return Inertia::render('Scope/Create', [
             'project' => $project,
@@ -31,7 +31,7 @@ class ScopeController extends Controller
 
     public function store(Project $project, ScopeRequest $request)
     {
-        $this->authorize('create', Project::class);
+        $this->authorize('create', [Scope::class, $project]);
 
         Scope::create($request->validated());
 
@@ -40,23 +40,23 @@ class ScopeController extends Controller
 
     public function show(Project $project, Scope $scope)
     {
-        $this->authorize('view', $project);;
+        $this->authorize('view', [Scope::class, $project]);
 
         return $scope;
     }
 
-    public function update(ScopeRequest $request, Scope $scope)
+    public function update(ScopeRequest $request, Project $project, Scope $scope)
     {
-        $this->authorize('update', $scope->project_id);
+        $this->authorize('update', [$scope, $project]);
 
         $scope->update($request->validated());
 
         return $scope;
     }
 
-    public function destroy(Scope $scope)
+    public function destroy(Project $project, Scope $scope)
     {
-        $this->authorize('delete', $scope->project_id);
+        $this->authorize('delete', [$scope, $project]);
 
         $scope->delete();
 

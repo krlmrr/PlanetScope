@@ -10,6 +10,7 @@ use function Pest\Laravel\actingAs;
 beforeEach(function () {
     $this->seed(DatabaseSeeder::class);
     $this->project = project();
+    $this->team = Team::where('id', $this->project->team_id)->first();
     $this->owner = User::where('id', $this->project->created_by)->first();
 
     Scope::factory()->count(5)->create([
@@ -22,6 +23,9 @@ it('allows the owner to see a list of scopes on a project', function () {
     $scope = Scope::where('project_id', $this->project->id)
         ->inRandomOrder()
         ->first();
+
+    // Make sure the owner is on the correct team.
+    $this->owner->switchTeam($this->team);
 
     actingAs($this->owner)->get(
         route('projects.scopes.index', $this->project->id)
