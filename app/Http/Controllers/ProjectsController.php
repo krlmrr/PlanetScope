@@ -15,14 +15,12 @@ class ProjectsController extends Controller
     {
         $this->authorize('viewAny', Project::class);
 
-        $teamProjects = Project::query()
-            ->where('team_id', auth()->user()->currentTeam->id)
-            ->with('createdBy')
-            ->orderBy('name')
-            ->get();
-
         return Inertia::render('Projects/Index', [
-            'teamProjects' => $teamProjects,
+            'teamProjects' => Project::query()
+                ->where('team_id', auth()->user()->currentTeam->id)
+                ->with('createdBy')
+                ->orderBy('name')
+                ->get()
         ]);
     }
 
