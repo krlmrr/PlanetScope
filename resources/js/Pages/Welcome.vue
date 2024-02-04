@@ -1,7 +1,6 @@
 <script setup>
     import { Head, Link } from '@inertiajs/vue3'
     import Hero from '@/Components/Page/Hero.vue'
-    import Footer from '@/Components/Page/Footer.vue'
     import Features from '@/Components/Page/Features.vue'
 
     defineProps({
@@ -17,16 +16,16 @@
 
     <div class="dark:bg-dots-lighter dark:bg-gray-900">
         <div
-            class="sm:flex sm:justify-center sm:items-center bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white"
+            class="bg-dots-darker bg-gray-100 bg-center selection:bg-red-500 selection:text-white sm:flex sm:items-center sm:justify-center"
         >
             <div
                 v-if="canLogin"
-                class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10"
+                class="z-10 p-6 text-right sm:fixed sm:right-0 sm:top-0"
             >
                 <Link
                     v-if="$page.props.auth.user"
                     :href="route('projects.index')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="font-semibold text-gray-600 hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
                 >
                     Projects
                 </Link>
@@ -34,7 +33,7 @@
                 <template v-else>
                     <Link
                         :href="route('login')"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                        class="font-semibold text-gray-600 hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
                     >
                         Log in
                     </Link>
@@ -42,7 +41,7 @@
                     <Link
                         v-if="canRegister"
                         :href="route('register')"
-                        class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                        class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
                     >
                         Register
                     </Link>
@@ -51,6 +50,5 @@
         </div>
         <Hero />
         <Features />
-        <Footer />
     </div>
 </template>
