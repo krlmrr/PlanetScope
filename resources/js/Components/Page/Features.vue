@@ -35,7 +35,7 @@
 </script>
 
 <template>
-    <div class="bg-white py-24 sm:py-32 dark:bg-gray-900">
+    <div class="mt-2 bg-white py-24 sm:py-32 dark:bg-gray-900">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:text-center">
                 <h2 class="text-base font-semibold leading-7 text-indigo-600">
@@ -54,6 +54,7 @@
                     budget.
                 </p>
             </div>
+
             <div class="mx-auto max-w-2xl lg:max-w-4xl">
                 <dl
                     class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16"

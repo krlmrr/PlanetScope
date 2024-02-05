@@ -12,15 +12,18 @@
 
     const props = defineProps(['project', 'scopes'])
 
-    const tabs = [{
-        name: 'Project Details',
-        routeGroup: 'projects',
-        href: route('projects.show', [props.project.id]),
-    }, {
-        name: 'Scopes',
-        routeGroup: 'projects.scopes',
-        href: route('projects.scopes.index', [props.project.id]),
-    }]
+    const tabs = [
+        {
+            name: 'Project Details',
+            routeGroup: 'projects',
+            href: route('projects.show', [props.project.id]),
+        },
+        {
+            name: 'Scopes',
+            routeGroup: 'projects.scopes',
+            href: route('projects.scopes.index', [props.project.id]),
+        },
+    ]
 
     const open = ref(false)
 </script>
@@ -29,7 +32,7 @@
     <AppLayout :title="project.name">
         <TabGroup :tabs="tabs" />
         <Card
-            class="mx-6"
+            class="mx-6 my-12"
             header="Project Details"
             headerDescription="Details for the project you are currently working with."
         >
