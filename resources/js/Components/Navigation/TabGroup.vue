@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <div class="mx-auto my-8 max-w-7xl">
+    <div class="mx-auto mt-4 max-w-7xl">
         <div class="sm:hidden">
             <label for="tabs" class="sr-only"> Select a tab </label>
             <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
