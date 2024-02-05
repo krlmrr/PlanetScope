@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.8",
         "symfony/http-client": "^7.0",
         "symfony/postmark-mailer": "^7.0",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "spatie/laravel-ray": "^1.35"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

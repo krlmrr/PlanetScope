@@ -2,6 +2,7 @@
     import { Head, Link } from '@inertiajs/vue3'
     import Hero from '@/Components/Page/Hero.vue'
     import Features from '@/Components/Page/Features.vue'
+    import Footer from '@/Layouts/Partials/Footer.vue'
 
     defineProps({
         canLogin: Boolean,
@@ -14,7 +15,9 @@
 <template>
     <Head title="Welcome" />
 
-    <div class="dark:bg-dots-lighter dark:bg-gray-900">
+    <div
+        class="dark:bg-dots-lighter -mb-2 flex h-screen flex-col dark:bg-gray-900"
+    >
         <div
             class="bg-dots-darker bg-gray-100 bg-center selection:bg-red-500 selection:text-white sm:flex sm:items-center sm:justify-center"
         >
@@ -48,7 +51,10 @@
                 </template>
             </div>
         </div>
-        <Hero />
-        <Features />
+        <div class="flex-1">
+            <Hero />
+            <Features />
+        </div>
+        <Footer />
     </div>
 </template>
