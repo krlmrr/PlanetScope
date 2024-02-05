@@ -44,9 +44,9 @@
                 <p
                     class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-400"
                 >
-                    Everything you need to plan your app.
+                    Everything you need to plan your projects.
                 </p>
-                <p class="mt-6 mb-12 text-lg leading-8 text-gray-600">
+                <p class="mb-12 mt-6 text-lg leading-8 text-gray-600">
                     Versatile software to streamline project planning,
                     execution, and monitoring. It empowers teams to efficiently
                     collaborate, allocate resources, set deadlines, and track
