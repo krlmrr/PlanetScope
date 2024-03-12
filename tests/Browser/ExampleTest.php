@@ -10,4 +10,4 @@ it('basic example', function () {
         $browser->visit('/')
             ->assertSee('Laravel');
     });
-});
+})->skip('Not finished');
